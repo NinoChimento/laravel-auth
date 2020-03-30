@@ -19,9 +19,29 @@
                 <td>{{$post->slug}}</td>
             </tr>
         </tbody>
-    </table>
+
+        <tr>
+            
+            <th>Autore</th>
+            <th>Body</th>
+        </tr>
+        <tbody>
+            
+            @foreach ($post->comments as $comment)
+            <td>{{$comment->name}}</td>
+            <td>{{$comment->body}}</td>
+           
+        </tr>
+        @endforeach
+        <
+    </tbody>
+</table>
 <a class="btn btn-success" href="{{route("admin.posts.index")}}">Home</a>
 @endsection
+            
+                
+            
+            
             
            
             

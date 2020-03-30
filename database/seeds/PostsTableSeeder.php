@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Post;
 Use App\User;
+use App\comment;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
