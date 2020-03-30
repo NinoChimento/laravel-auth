@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
@@ -38,7 +39,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            "title"=> "required|string|max:30",
+            "body"=> "required|string"
+        ]);
+        $data = $request->all();
+        $post = new Post;
+        $post->fill($data);
+        $post->user_id = Auth::id();
+        $post->slug =  Str::finish(Str::slug($post->title, '-'), rand(1, 1000));
+        $slug = $post->slug;
+        if($post->save()){
+            return redirect()->route('admin.posts.show', [$slug]);
+        }
+        else{
+            abort("404");
+        }
     }
 
     /**
