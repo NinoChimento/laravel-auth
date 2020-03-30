@@ -52,9 +52,12 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
-    {
-        //
+    {   
+        return view("guest.show",compact("post"));
     }
+        
+        
+
 
     /**
      * Show the form for editing the specified resource.
