@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
+
 class PostController extends Controller
 {
     /**
@@ -13,9 +15,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $posts = Post::all();
-        dd("sn un admin");
+    {   $idUser = Auth::id();
+        $posts = Post::where("user_id",$idUser)->get();
+        return view("admin.index",compact("posts"));
     }
 
     /**
