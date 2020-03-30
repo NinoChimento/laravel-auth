@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+@if (session("delete"))
+        <div class="alert alert-danger">
+            Hai eliminato il post:{{session("delete")->title}}
+        </div>
+    @endif
 <a class= "btn btn-outline-success" href="{{route("admin.posts.create")}}">crea un post</a>
     <h1>Tutti i post dell' admin</h1>
     <table class="table">
@@ -17,6 +22,13 @@
                 <td>{{$post->body}}</td>
                 <td>{{$post->user->name}}</td>
                 <td><a href="{{route("admin.posts.edit",$post)}}">Modifica</a></td>
+                <td>
+                <form action="{{route("admin.posts.destroy",$post->id)}}" method="POST">
+                    @csrf
+                    @method("DELETE")
+                    <button class="btn-danger" type="submit">Cancella</button>
+                </form>
+            </td>
             </tr>
             @endforeach
             

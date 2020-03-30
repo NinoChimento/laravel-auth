@@ -115,7 +115,13 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+        if(empty($id)){
+            abort("404 Nessun elemento da cancellare");
+        }
+        $post = Post::find($id);
+        if($post->delete()){
+            return redirect()->route("admin.posts.index")->with("delete", $post);
+        }
     }
 }
