@@ -3,7 +3,11 @@
 use Illuminate\Database\Seeder;
 use App\Post;
 Use App\User;
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+
+use function GuzzleHttp\Psr7\str;
+
 class PostsTableSeeder extends Seeder
 {
     /**
@@ -17,8 +21,9 @@ class PostsTableSeeder extends Seeder
             $user = User::inRandomOrder()->first();
             $newPost = new Post;
             $newPost->user_id = $user->id;
-            $newPost->title = $faker->title(3);
+            $newPost->title = $faker->word(3);
             $newPost->body = $faker->paragraph(30);
+            $newPost->slug = Str::finish(Str::slug($newPost->title, '-'),rand(1,1000));
             $newPost->save();
         }
     }
