@@ -20,6 +20,7 @@
             </tr>
         </tbody>
     </table>
+<a class="btn btn-success" href="{{route("admin.posts.index")}}">Home</a>
 @endsection
             
            

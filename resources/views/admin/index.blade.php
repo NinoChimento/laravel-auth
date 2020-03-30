@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<a class= "btn btn-outline-success" href="{{route("admin.posts.create")}}">crea un post</a>
     <h1>Tutti i post dell' admin</h1>
     <table class="table">
         <tr>
