@@ -53,11 +53,12 @@ class PostController extends Controller
         $post->slug =  Str::finish(Str::slug($post->title, '-'), rand(1, 1000));
         $slug = $post->slug;
         
-        if(!empty($data["tags"])){
-            $post->tags()->attach($data["tags"]);
-        }
+        
+        
+        
       
         if($post->save()){
+            $post->tags()->attach($data["tags"]);
             return redirect()->route('admin.posts.show', [$slug]);
         }
         else{
@@ -74,8 +75,12 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = Post::where("slug",$slug)->first();
-        
-        return view("admin.show",compact("post"));
+        $tags = $post->tags;
+        $data = [
+            "post" => $post,
+            "tags" => $tags
+        ];
+        return view("admin.show", $data);
     }
 
     /**

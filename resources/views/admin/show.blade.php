@@ -35,6 +35,11 @@
         @endforeach
     </tbody>
 </table>
+@forelse ($tags as $tag)
+    <h4>tag: {{$tag->name}}</h4>
+@empty
+    <h4>Nessun tag assocciato</h4>
+@endforelse
 <a class="btn btn-success" href="{{route("admin.posts.index")}}">Home</a>
 @endsection
             
