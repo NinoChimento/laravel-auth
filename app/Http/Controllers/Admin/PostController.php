@@ -112,18 +112,21 @@ class PostController extends Controller
             "title" => "required|string|max:30",
             "body" => "required|string"
         ]);
-
+        $request->validate([
+            "tags" => "exists:App\Tag,id"
+        ]);
         $data=$request->all();
-        dd($data["tags"]);
         
-
         $slug = $post->slug;
         if($post->update($data)){
+            $post->tags()->sync($data["tags"]);
             return redirect()->route('admin.posts.show', [$slug]);
         }else {
             abort("4040");
         }
     }
+        
+
 
     /**
      * Remove the specified resource from storage.

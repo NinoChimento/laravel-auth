@@ -21,7 +21,7 @@
                  <td><a href="{{route("admin.posts.show",$post->slug)}}">{{$post->title}}</a></td>
                 <td>{{$post->body}}</td>
                 <td>{{$post->user->name}}</td>
-                <td><a href="{{route("admin.posts.edit",$post)}}">Modifica</a></td>
+                <td><a class="btn btn-primary" href="{{route("admin.posts.edit",$post)}}">Modifica</a></td>
                 <td>
                 <form action="{{route("admin.posts.destroy",$post->id)}}" method="POST">
                     @csrf
