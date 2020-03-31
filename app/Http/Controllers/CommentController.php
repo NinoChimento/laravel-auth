@@ -27,4 +27,12 @@ class CommentController extends Controller
             abort("404");
         }
     }
+
+    public function delete(Comment $comment){
+        $slug = $comment->post->slug;
+       
+        if($comment->delete()) {
+             return redirect()->route('admin.posts.show', [$slug]);
+        }
+    }
 }

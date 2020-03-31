@@ -30,8 +30,13 @@
             @foreach ($post->comments as $comment)
             <td>{{$comment->name}}</td>
             <td>{{$comment->body}}</td>
-           
+            <td><form action="{{route("comment.delete",$comment)}}" method="POST">
+            @csrf
+            @method("DELETE")
+            <button class="btn btn-danger" type="submit">Cancella Commento</button>
+            </form></td> 
         </tr>
+       
         @endforeach
     </tbody>
 </table>

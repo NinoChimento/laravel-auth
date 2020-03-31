@@ -46,6 +46,11 @@ class PostController extends Controller
             "title"=> "required|string|max:30",
             "body"=> "required|string"
         ]);
+
+        $request->validate([
+            "tags" => "exists:App\Tag,id"
+        ]);
+
         $data = $request->all();
         $post = new Post;
         $post->fill($data);
@@ -53,18 +58,18 @@ class PostController extends Controller
         $post->slug =  Str::finish(Str::slug($post->title, '-'), rand(1, 1000));
         $slug = $post->slug;
         
+          if($post->save()){
+              $post->tags()->attach($data["tags"]);
+              return redirect()->route('admin.posts.show', [$slug]);
+          }
+          else{
+              abort("404");
+          }
+      }
         
         
         
-      
-        if($post->save()){
-            $post->tags()->attach($data["tags"]);
-            return redirect()->route('admin.posts.show', [$slug]);
-        }
-        else{
-            abort("404");
-        }
-    }
+        
 
     /**
      * Display the specified resource.

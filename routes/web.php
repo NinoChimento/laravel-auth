@@ -22,6 +22,7 @@ Route::Get("/postGuest","PostController@index")->name("posts");
 Route::Get("/postShow/{post}", "PostController@show")->name("postsShow");
 
 Route::Post("/comment", "CommentController@store")->name("comment");
+Route::Delete("/comment/delete/{comment}", "CommentController@delete")->name("comment.delete");
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::name("admin.")->prefix("admin")->namespace("Admin")->middleware('auth')->group(function(){
