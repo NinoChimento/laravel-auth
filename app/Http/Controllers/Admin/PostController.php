@@ -52,6 +52,11 @@ class PostController extends Controller
         $post->user_id = Auth::id();
         $post->slug =  Str::finish(Str::slug($post->title, '-'), rand(1, 1000));
         $slug = $post->slug;
+        
+        if(!empty($data["tags"])){
+            $post->tags()->attach($data["tags"]);
+        }
+      
         if($post->save()){
             return redirect()->route('admin.posts.show', [$slug]);
         }
