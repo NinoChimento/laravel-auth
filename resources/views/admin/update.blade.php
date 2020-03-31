@@ -11,7 +11,7 @@
             <label for="tags">Tags</label>
             @foreach ($tags as $tag)
               <span>{{$tag->name}}</span>
-              <input type="checkbox" name="tags[]" id="" value="{{$tag->id}}">
+        <input type="checkbox" name="tags[]" id="" value="{{$tag->id}} " {{($post->tags->contains($tag->id)) ? "checked" : ""}}>
             @endforeach
         </div>
         <button type="submit">Salva</button>

@@ -114,7 +114,7 @@ class PostController extends Controller
         ]);
 
         $data=$request->all();
-        
+        dd($data["tags"]);
         
 
         $slug = $post->slug;
