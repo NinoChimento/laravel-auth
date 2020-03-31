@@ -9,4 +9,9 @@ class Tag extends Model
     protected $fillibale=[
         "name",
     ];
+
+    public function Posts()
+    {
+        return $this->belongsTohasMany('App\Post');
+    }
 }
