@@ -90,8 +90,13 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
-    {
-        return view("admin.update",compact("post"));
+    {   
+        $tags = Tag::all();
+        $data = [
+            "post"=> $post,
+            "tags"=> $tags
+        ];
+        return view("admin.update",$data);
     }
 
     /**
@@ -132,6 +137,7 @@ class PostController extends Controller
             abort("404 Nessun elemento da cancellare");
         }
         $post = Post::find($id);
+        $post->tags()->detach();
         if($post->delete()){
             return redirect()->route("admin.posts.index")->with("delete", $post);
         }
