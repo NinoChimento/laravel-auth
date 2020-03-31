@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
-
+    @if (session("delete"))
+        <div class="alert alert-danger">
+            Hai eliminato il post:{{session("delete")->name}}
+        </div>
+    @endif
     <h1>Tutti i dettagli</h1>
     <table class="table">
         <tr>

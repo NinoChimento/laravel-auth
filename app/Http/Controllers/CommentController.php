@@ -32,7 +32,7 @@ class CommentController extends Controller
         $slug = $comment->post->slug;
        
         if($comment->delete()) {
-             return redirect()->route('admin.posts.show', [$slug]);
+             return redirect()->route('admin.posts.show', [$slug])->with("delete", $comment);
         }
     }
 }
