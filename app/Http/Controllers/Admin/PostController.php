@@ -52,6 +52,7 @@ class PostController extends Controller
         ]);
 
         $data = $request->all();
+        dd($data);
         $post = new Post;
         $post->fill($data);
         $post->user_id = Auth::id();

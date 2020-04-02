@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <form action="{{route("admin.posts.store")}}" method="POST">
+    <form action="{{route("admin.posts.store")}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method("POST")
         
@@ -13,6 +13,9 @@
               <span>{{$tag->name}}</span>
               <input type="checkbox" name="tags[]" id="" value="{{$tag->id}}">
             @endforeach
+        </div>
+        <div class="form-group">
+            <input type="file" name="img" id="">
         </div>
         <button type="submit">Salva</button>
     </form>

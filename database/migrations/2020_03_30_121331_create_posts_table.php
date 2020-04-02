@@ -18,6 +18,8 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->char("title",40);
+            $table->text("img")->nullable();
+            $table->boolean("published");
             $table->text("body");
             $table->string("slug")->unique();
             $table->timestamps();

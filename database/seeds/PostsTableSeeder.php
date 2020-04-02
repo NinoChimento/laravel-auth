@@ -23,6 +23,7 @@ class PostsTableSeeder extends Seeder
             $newPost = new Post;
             $newPost->user_id = $user->id;
             $newPost->title = $faker->word(3);
+            $newPost->published = rand(0,1);
             $newPost->body = $faker->paragraph(30);
             $newPost->slug = Str::finish(Str::slug($newPost->title, '-'),rand(1,1000));
             $newPost->save();
