@@ -15,6 +15,12 @@
             @endforeach
         </div>
         <div class="form-group">
+            <select  name="published" id="">
+                <option value="0">Non pubblicato</option>
+                <option value="1"> Pubblicato</option>
+            </select>
+        </div>
+        <div class="form-group">
             <input type="file" name="img" id="">
         </div>
         <button type="submit">Salva</button>
