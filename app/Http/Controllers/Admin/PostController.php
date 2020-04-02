@@ -45,12 +45,11 @@ class PostController extends Controller
 
         $request->validate([
             "title"=> "required|string|max:30",
-            "body"=> "required|string"
-        ]);
-
-        $request->validate([
+            "body"=> "required|string",
+            "img"=> "image",
             "tags" => "exists:App\Tag,id"
         ]);
+
 
         $data = $request->all();
         $post = new Post;
